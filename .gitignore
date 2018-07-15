@@ -1,0 +1,9 @@
+.DS_Store
+.vagrant
+.tm_properties
+*.retry
+examples/hosts
+files/consul
+tests/test_results.json
+*.zip
+*_SHA256SUMS

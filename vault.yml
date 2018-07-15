@@ -1,0 +1,9 @@
+- name: Assemble Consul cluster
+  hosts: vault_servers_dc1
+  any_errors_fatal: true
+  become: yes
+  become_user: root
+  vars:
+    - consul_datacenter: 'dc1'
+  roles:
+    - { role: consul }

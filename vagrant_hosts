@@ -1,0 +1,16 @@
+# File: vagrant_hosts
+# Consul cluster node hosts configuration for Vagrant
+#
+# NB: Replace the hosts below with your preferred node hostnames and continue
+#     the 'nodeN' pattern for additional nodes past 'consul3'. There should
+#     be only one node with consul_node_role = "bootstrap"
+#     Do not modify the labels (text appearing between []), however
+
+[consul_servers_dc1]
+consul1.consul host_ip=10.1.42.101 consul_advertise_address=10.1.42.101 consul_bind_address=0.0.0.0 consul_iface=eth1 consul_node_role=bootstrap ansible_ssh_user=vagrant ansible_ssh_private_key_file=./.vagrant/machines/consul1/virtualbox/private_key
+consul2.consul host_ip=10.1.42.102 consul_advertise_address=10.1.42.102 consul_bind_address=0.0.0.0 consul_iface=eth1 consul_node_role=server ansible_ssh_user=vagrant ansible_ssh_private_key_file=./.vagrant/machines/consul2/virtualbox/private_key
+consul3.consul host_ip=10.1.42.103 consul_advertise_address=10.1.42.103 consul_bind_address=0.0.0.0 consul_iface=eth1 consul_node_role=server ansible_ssh_user=vagrant ansible_ssh_private_key_file=./.vagrant/machines/consul3/virtualbox/private_key
+
+[vault_servers_dc1]
+vault1.consul host_ip=10.1.42.102 consul_advertise_address=10.1.42.102 consul_bind_address=0.0.0.0 consul_iface=eth1 consul_node_role=client ansible_ssh_user=vagrant ansible_ssh_private_key_file=./.vagrant/machines/vault1/virtualbox/private_key
+

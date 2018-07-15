@@ -1,0 +1,17 @@
+---
+
+- name: start consul
+  service:
+    name: consul
+    state: started
+
+- name: restart consul
+  service:
+    name: consul
+    state: restarted
+
+- name: restart rsyslog
+  service:
+    name: rsyslog
+    state: restarted
+

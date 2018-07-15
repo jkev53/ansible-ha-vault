@@ -1,0 +1,17 @@
+---
+
+- name: Inserting export CONSUL_HTTP_ADDR in bashrc 
+  lineinfile:
+    path: /root/.bashrc
+    regexp: '^export CONSUL_HTTP_ADDR='
+    line: "export CONSUL_HTTP_ADDR={{ consul_advertise_address }}:8500"
+    owner: root
+    group: root
+
+- name: Inserting export CONSUL_HTTP_ADDR in bashrc 
+  lineinfile:
+    path: /home/vagrant/.bashrc
+    regexp: '^export CONSUL_HTTP_ADDR='
+    line: "export CONSUL_HTTP_ADDR={{ consul_advertise_address }}:8500"
+    owner: vagrant
+    group: vagrant

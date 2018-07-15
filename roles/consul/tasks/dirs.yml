@@ -1,0 +1,38 @@
+---
+# File: dirs.yml - Consul directories
+
+- name: Create directories
+  file:
+    dest: "{{ item }}"
+    state: directory
+    owner: "{{ consul_user }}"
+    group: "{{ consul_group}}"
+    mode: 0700
+    recurse: yes
+  with_items:
+    - "{{ consul_config_path }}"
+    - "{{ consul_configd_path }}"
+    - "{{ consul_data_path }}"
+    - "{{ consul_run_path }}"
+    - "{{ consul_tls_path }}"
+
+- name: Create log directory
+  file:
+    dest: "{{ item }}"
+    state: directory
+    owner: "{{ syslog_user }}"
+    group: "{{ syslog_group }}"
+    recurse: yes
+  with_items:
+    - "{{ consul_log_path }}"
+  when:
+    - consul_syslog_enable == true
+
+- debug: msg="bin={{ consul_bin_path }}"
+# XXX: This could be a stat instead
+- name: Verify binary path
+  file:
+    dest: "{{ consul_bin_path }}"
+    state: directory
+    owner: root
+    mode: 0755
